@@ -7,8 +7,8 @@ void printFileContents(const char* filename) {
     FILE* filePtr = fopen(filename, "r");
     cout << endl << "----------" << filename << "----------" << endl;
     char ch;
-    while ((ch = fgetc(filePtr)) != EOF) { // Поки не досягнуто кінця файлу
-        printf("%c",ch); // Виводимо символи на екран
+    while ((ch = fgetc(filePtr)) != EOF) {
+        printf("%c",ch);
     }
     fclose(filePtr);
     cout << endl;
@@ -70,7 +70,7 @@ void removeDuplicateFile(const char* inputFilename) {
 
     char line[1000];
     while (fgets(line, 1000, inputFile)) {
-        // преобразуем строку в массив слов 
+
         char* words[100];
         int count = 0;
         char* p = strtok(line, " ");
@@ -78,11 +78,11 @@ void removeDuplicateFile(const char* inputFilename) {
             words[count++] = p;
             p = strtok(NULL, " ");
         }
-        // удаляем дубликаты из массива слов
+
         for (int i = 0; i < count; i++) {
             for (int j = i + 1; j < count; j++) {
                 if (strcmp(words[i], words[j]) == 0) {
-                    // найден дубликат, удаляем его
+
                     for (int k = j; k < count - 1; k++) {
                         words[k] = words[k + 1];
                     }
@@ -91,7 +91,7 @@ void removeDuplicateFile(const char* inputFilename) {
                 }
             }
         }
-        // записываем массив слов до нового файла
+
         for (int i = 0; i < count; i++) {
             fprintf(outputFile, "%s", words[i]);
             if (i != count - 1) {
@@ -128,7 +128,7 @@ void findMostCommonFile(const char* inputFileName) {
         }
         int maxCount = 0;
         char mostCommonChar = '\0';
-        charCount[32]=0;//обнуление количества пробелов  
+        charCount[32]=0; 
         for (int i = 0; i < 128; i++) {
             if (charCount[i] > maxCount) {
                 maxCount = charCount[i];
@@ -155,7 +155,7 @@ void createFile() {
         
         FILE* filePtr = fopen(filename, "r");
         
-        if (filePtr == NULL) { // Если файл не существует, то создаем его
+        if (filePtr == NULL) {
             filePtr = fopen(filename, "w");
             cout << "File '" << filename << "' has been successfully created!" << endl;
 
@@ -168,7 +168,7 @@ void createFile() {
             printFileContents(outputFileName);
             findMostCommonFile(outputFileName);
             printFileContents(outputFileName);
-        } else { // Если файл существует, то выводим его содержимое
+        } else {
             cout << "File " << filename << " already exists. " << endl;
 
             printFileContents(filename);
