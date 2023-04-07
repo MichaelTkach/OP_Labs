@@ -12,8 +12,8 @@ void printFileContents(string& filename) {
     cout << endl << "----------" << filename << "----------" << endl;
     char ch;
     ifstream inFile(filename);
-    while (inFile.get(ch)) { // Поки не досягнуто кінця файлу
-        cout << ch; // Виводимо символи на екран
+    while (inFile.get(ch)) {
+        cout << ch;
     }
     cout << endl;
 }
@@ -51,14 +51,14 @@ void writeWordsToFile(string& inputFile, string& outputFile) {
     while (getline(inFile, line)) {
         size_t pos = 0, len = line.length();
         while (pos < len) {
-            // Пошук наступного слова
+
             size_t start = line.find_first_not_of(" .,\n", pos);
             size_t end = line.find_first_of(" .,\n", start);
 
             if (start == string::npos) break;
 
             if (end == string::npos || end >= len) {
-                // Останнє слово в рядку
+
                 outFile << line.substr(start) << " ";
                 break;
             } else {
@@ -124,7 +124,7 @@ void findMostCommonFile(string& inputFileName) {
 
         int maxCount = 0;
         char mostCommonChar = '\0';
-        charCount[32]=0;//обнуление количества пробелов  
+        charCount[32]=0;
 
         for (int i = 0; i < 128; i++) {
             if (charCount[i] > maxCount) {
@@ -151,7 +151,7 @@ void createFile1() {
         cin >> filename;
 
         ifstream inputFile(filename);
-        if (!inputFile.is_open()) { // Якщо файл не існує, то створюємо його
+        if (!inputFile.is_open()) {
             cout << "File '" << filename << "' has been successfully created!" << endl;
 
             appendToFile(filename);
@@ -161,7 +161,7 @@ void createFile1() {
             printFileContents(outputFileName);
             findMostCommonFile(outputFileName);
             printFileContents(outputFileName);
-        } else { // Якщо файл існує, то виводимо його вміст
+        } else {
             cout << "File '" << filename << "' already exists." << endl;
 
             printFileContents(filename);
